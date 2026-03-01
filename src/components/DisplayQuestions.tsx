@@ -15,13 +15,19 @@ interface propTypes {
 function DisplayQuestions({ week }: propTypes) {
     return (<>
         {getWeekQuestions(week).map(element => (
-            <QuestionViewer question={`${element.question}`} />
+            <QuestionViewer question={element.question} topic={element.topic} />
         ))}
     </>);
 }
 
 function getWeekQuestions(week: number): QuestionData[] {
     const questions = questionData.filter(element => parseInt(element.week) === week);
+    questions.sort((a, b) => {
+        return a.topic.localeCompare(b.topic, undefined, {
+            numeric: true,
+            sensitivity: 'base',
+        });
+    });
     return questions;
 }
 

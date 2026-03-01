@@ -3,30 +3,33 @@ if (!CDN_URL) throw new Error('Critical: env var CDN_URL missing.')
 
 import { useState } from "react";
 
-interface propTypes { question: string }
+interface propTypes { question: string, topic: string };
+interface propQuestion { question: string };
 
-function QuestionViewer({ question }: propTypes) {
+function QuestionViewer({ question, topic }: propTypes) {
     return (<div className="w-full h-auto py-6">
+        <p className="text-lg font-medium px-16">Topic: {topic}</p>
+
         <QuestionComponent question={question} />
         <MarkschemeComponent question={question} />
     </div>)
 }
 
-function QuestionComponent({ question }: propTypes) {
+function QuestionComponent({ question }: propQuestion) {
     const image_url = `${CDN_URL}${question}_q.png`
 
-    return (<div className="w-full h-auto py-6">
+    return (<div className="w-full h-auto">
         <img src={image_url} alt="" className="w-full h-auto" />
     </div>)
 }
 
-function MarkschemeComponent({ question }: propTypes) {
+function MarkschemeComponent({ question }: propQuestion) {
     const image_url = `${CDN_URL}${question}_m.png`
 
     const [shown, setShown] = useState<boolean>(false);
 
-    return (<div className="w-full h-auto py-6">
-        <div className="">
+    return (<div className="w-full h-auto">
+        <div className="px-20 pb-2">
             <input type="checkbox" checked={shown} onChange={event => setShown(event.target.checked)} />
             <p className="font-serif inline">{shown ? 'Hide answer' : 'Show answer'}</p>
         </div>
