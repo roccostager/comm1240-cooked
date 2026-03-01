@@ -1,7 +1,11 @@
+import Header from "./components/Header"
+import Content from "./components/Content"
+
 function App() {
   return (
     <>
-      <p className="font-serif text-lg">Hello, world</p>
+      <Header />
+      <Content />
     </>
   )
 }
