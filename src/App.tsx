@@ -8,7 +8,7 @@ function App() {
   return (
     <>
       <Header week={week} setWeek={setWeek} />
-      <Content week={week} setWeek={setWeek} />
+      <Content week={week} />
     </>
   )
 }

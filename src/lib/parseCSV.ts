@@ -1,5 +1,11 @@
 import Papa from 'papaparse';
 
+interface QuestionData {
+    question: string,
+    topic: string,
+    week: string,
+}
+
 async function loadCSV() {
     try {
         const response = await fetch('/problems.csv');
@@ -12,15 +18,15 @@ async function loadCSV() {
     }
 }
 
-async function parseCSV() {
+async function parseCSV(): Promise<QuestionData[]> {
     const csv = await loadCSV();
     if (!csv) throw Error()
 
-    const json = Papa.parse(csv, {
+    const json = Papa.parse<QuestionData>(csv, {
         header: true,
     })
 
-    return json;
+    return json.data;
 }
 
 export default parseCSV;

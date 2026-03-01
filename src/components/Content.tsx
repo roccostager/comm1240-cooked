@@ -1,15 +1,14 @@
-import QuestionViewer from './QuestionViewer';
-
-import { type Dispatch, type SetStateAction } from "react";
+import DisplayQuestions from "./DisplayQuestions";
 
 interface propTypes {
     week: number,
-    setWeek: Dispatch<SetStateAction<number>>
 }
 
-function Content({ week, setWeek }: propTypes) {
-    return (<div className="max-w-5xl m-auto min-h-full">
-        <QuestionViewer question="202504Q2_q" />
+function Content({ week }: propTypes) {
+    return (<div className="max-w-5xl m-auto min-h-full pt-4">
+        <p className="font-serif text-3xl pl-10">Week {week} Questions</p>
+
+        <DisplayQuestions week={week} />
     </div>)
 }
 
