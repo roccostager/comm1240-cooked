@@ -31,7 +31,7 @@ function MarkschemeComponent({ question }: propTypes) {
             <p className="font-serif inline">{shown ? 'Hide answer' : 'Show answer'}</p>
         </div>
 
-        {shown ? <img src={image_url} alt="" className="w-full h-auto" /> : null}
+        <img src={image_url} alt="" className={`${shown ? 'block' : 'hidden'} w-full h-auto`} />
     </div>)
 }
 
